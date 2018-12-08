@@ -1,0 +1,13 @@
+<div class="flex-contacts">
+  <div class="item">
+      <h2>Contacts</h2>
+      <ul>
+        <li *ngFor="let c of contacts">
+            <a [routerLink]="['/contact']"  [queryParams]="{ 'id': c['_id']}">{{c?.name}}</a>
+
+        </li>
+
+      </ul>
+  </div>
+
+</div>

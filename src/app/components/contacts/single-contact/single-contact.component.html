@@ -1,0 +1,31 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <div class="contactDetails">
+    <div>
+      <img [src]="contactInfo?.picture" alt="Image">
+    </div>
+    <div>
+      <span>
+        <strong>Name:</strong>
+      </span>
+      <span>{{contactInfo?.name}}</span>
+    </div>
+    <div>
+      <span>
+        <strong>Phone:</strong>
+      </span>
+      <span>{{contactInfo?.phone}}</span>
+    </div>
+    <div>
+      <button nz-button nzType="primary" (click)="openModal()">
+        Send Message
+      </button>
+
+    </div>
+  </div>
+
+</nz-spin>
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="'Send Message to ' + contactInfo?.phone " (nzOnCancel)="cancel()" (nzOnOk)="send()">
+
+  <textarea nz-input class="input-control" [formControl]="textField" placeholder="Type your message" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+
+</nz-modal>

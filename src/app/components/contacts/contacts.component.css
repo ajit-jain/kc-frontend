@@ -1,0 +1,15 @@
+.flex-contacts{
+  display: flex;
+  padding:0 10px;
+
+}
+.flex-contacts .item{
+  flex:2;
+
+}
+
+@media (max-width: 767px) {
+  .flex-contacts {
+    padding: 0;
+  }
+}

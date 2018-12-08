@@ -1,0 +1,18 @@
+.contactDetails{
+  display: flex;
+  flex-direction: column;
+  line-height: 3;
+  /* width: 50%; */
+  margin: auto;
+  text-align: center;
+}
+
+.contactDetails img {
+  width:100px;
+}
+.input-control {
+  width: 100%;
+  /* border: 0; */
+  /* outline: none;
+  border-bottom: 1px solid black; */
+}
