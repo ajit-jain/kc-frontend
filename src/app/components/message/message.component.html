@@ -1,3 +1,34 @@
-<p>
-  message works!
-</p>
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <div class="messages">
+    <h2>Messages Sent</h2>
+    <div>
+        <nz-table #basicTable [nzData]="messages" [nzShowPagination]="false">
+            <thead>
+              <tr>
+                <th>Created Time</th>
+                <th>Direction</th>
+                <th>Source</th>
+                <th>Desination</th>
+                <th>OTP Sent</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{data.sent_time ? (data.sent_time | date:"MM/dd/yy HH:mm:ss") : (data.queued_time | date:"MM/dd/yy HH:mm:ss")}}</td>
+                <td>{{data.direction}}</td>
+                <td>{{data.source}}</td>
+                <td>{{data.destination}}</td>
+                <td>{{ getOTP(data.text) }}</td>
+                <td>{{data.status}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+    </div>
+    <div style="padding: 20px 10px;" *ngIf="messages && messages.length">
+        <button nz-button (click)="previousPage()" [disabled]="page==1" >prev</button>
+        <button nz-button (click)="nextPage()" [disabled]="page==totalPages">next</button>
+    </div>
+  </div>
+
+</nz-spin>

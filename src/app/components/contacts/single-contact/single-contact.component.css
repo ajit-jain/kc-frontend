@@ -16,3 +16,10 @@
   /* outline: none;
   border-bottom: 1px solid black; */
 }
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+.error::before{
+  content: '*';
+}

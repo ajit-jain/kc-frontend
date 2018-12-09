@@ -20,7 +20,9 @@ registerLocaleData(en);
 const routes: Routes = [
   { path: '', component: ContactsComponent },
   { path: 'contacts', component: ContactsComponent },
-  { path: 'contact', component: SingleContactComponent }
+  { path: 'contact', component: SingleContactComponent },
+  { path: 'messages', component: MessageComponent },
+
 
 ];
 @NgModule({

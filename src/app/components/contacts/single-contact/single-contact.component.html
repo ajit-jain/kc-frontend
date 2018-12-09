@@ -24,8 +24,10 @@
   </div>
 
 </nz-spin>
-<nz-modal [(nzVisible)]="isVisible" [nzTitle]="'Send Message to ' + contactInfo?.phone " (nzOnCancel)="cancel()" (nzOnOk)="send()">
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="'Send Message to ' + contactInfo?.phone "
+ (nzOnCancel)="cancel()" (nzOnOk)="isLoading=true;send()" [nzOkLoading]="isLoading">
+  <span class="error" *ngIf="errorMessage"> {{errorMessage}}</span>
 
   <textarea nz-input class="input-control" [formControl]="textField" placeholder="Type your message" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
-
+  <span class="error" *ngIf="textField.errors && textField.dirty"> Please enter some text</span>
 </nz-modal>

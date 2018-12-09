@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { StoreService } from './../../../shared/services/store.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,6 +12,8 @@ export class SingleContactComponent implements OnInit {
   contactInfo: any;
   isSpinning = true;
   isVisible = false;
+  isLoading = false;
+  errorMessage = '';
   textField = new FormControl(null, [Validators.required]);
   constructor(public _store: StoreService,
     public _route: ActivatedRoute, public _router: Router) { }
@@ -39,10 +42,23 @@ export class SingleContactComponent implements OnInit {
   }
   openModal() {
     this.isVisible = true;
+    this.textField.reset();
   }
-  send() {
-    if(this.textField.valid){
-      const text = `Hi. Your OTP is: ${Math.floor(100000 + Math.random() * 900000)} \n ${this.textField.value}`;
+  async send() {
+    this.errorMessage = '';
+    try {
+      this.textField.markAsDirty();
+      if (this.textField.valid) {
+        const text = `Hi. Your OTP is: ${Math.floor(100000 + Math.random() * 900000)} \n ${this.textField.value}`;
+        await this._store.sendMessage({ message: text, to: this.contactInfo['phone'], from: environment.ADMIN_NUMBER }).toPromise();
+        this.cancel();
+        this.isLoading = false;
+        this._router.navigate(['/messages']);
+      }
+    } catch (e) {
+      console.log(e);
+      this.isLoading = false;
+      this.errorMessage = e.message;
     }
   }
   cancel() {
