@@ -15,6 +15,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SingleContactComponent } from './components/contacts/single-contact/single-contact.component';
 import { MessageComponent } from './components/message/message.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 registerLocaleData(en);
 const routes: Routes = [
@@ -22,8 +23,7 @@ const routes: Routes = [
   { path: 'contacts', component: ContactsComponent },
   { path: 'contact', component: SingleContactComponent },
   { path: 'messages', component: MessageComponent },
-
-
+  { path: '**', component: NotFoundComponent },
 ];
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ const routes: Routes = [
     ContactsComponent,
     ToolbarComponent,
     SingleContactComponent,
-    MessageComponent
+    MessageComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
