@@ -3,6 +3,8 @@ import { StoreService } from './../../../shared/services/store.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd';
+
 @Component({
   selector: 'app-single-contact',
   templateUrl: './single-contact.component.html',
@@ -15,7 +17,7 @@ export class SingleContactComponent implements OnInit {
   isLoading = false;
   errorMessage = '';
   textField = new FormControl(null, [Validators.required]);
-  constructor(public _store: StoreService,
+  constructor(public _store: StoreService, public _messageService: NzMessageService,
     public _route: ActivatedRoute, public _router: Router) { }
 
   ngOnInit() {
@@ -58,6 +60,8 @@ export class SingleContactComponent implements OnInit {
     } catch (e) {
       console.log(e);
       this.isLoading = false;
+      this._messageService.create('error', `Something went wrong`);
+
       this.errorMessage = e.message;
     }
   }

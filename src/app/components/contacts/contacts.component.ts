@@ -1,5 +1,6 @@
 import { StoreService } from './../../shared/services/store.service';
 import { Component, OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-contacts',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactsComponent implements OnInit {
   contacts: any = [];
-  constructor(public _store: StoreService) { }
+  constructor(public _store: StoreService, public _messageService: NzMessageService) { }
 
   ngOnInit() {
     this._store.getContacts().subscribe((data) => {
@@ -16,6 +17,7 @@ export class ContactsComponent implements OnInit {
       this.contacts = data || [];
     }, (error) => {
       console.log(error);
+      this._messageService.create('error', `Something went wrong`);
     });
   }
 
