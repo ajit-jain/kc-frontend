@@ -7,7 +7,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class StoreService {
-  api = 'http://ghserver.in:4800/api/v1';
+  api = environment.API;
   constructor(private http: HttpClient) { }
   getContacts() {
     return this.http.get('./assets/default.json').pipe(
